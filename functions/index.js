@@ -23,37 +23,37 @@ exports.reco = functions.https.onRequest(
       /* Solo se llega a esta parte si nombre1 y nombre 2 tienen un texto.
        * Devuelve un saludo. */
 
-      if (request.query.music == "2" && request.query.music1 >= 15 && request.query.music1 < 70) {
-        response.send('Camila Cabello,Charlie Puth, Billie Elish,Shawn Mendes Te pueden Gustar! :D');
+      if (request.query.music == 2 && request.query.music1 >= 15 && request.query.music1 < 70) {
+        response.send(`Camila Cabello,Charlie Puth, Billie Elish,Shawn Mendes Te pueden Gustar! :D`);
 
 
-    } else if (request.query.music == "3" && request.query.music1  >= 15 && request.query.music1  < 70) {
-        response.send('Ozuna,Daddy Yankie,Anuel, Bad Bunny Te pueden gustar! :D');
+    } else if (request.query.music == 3 && request.query.music1  >= 15 && request.query.music1  < 70) {
+        response.send(`Ozuna,Daddy Yankie,Anuel, Bad Bunny Te pueden gustar! :D`);
 
      
 
-    } else if (request.query.music == "4" && request.query.music1  >= 15 && request.query.music1  < 70) {
-        response.send('Nirvana,Queen,Pink Floyd,Metallica Te pueden Gustar! :D');
+    } else if (request.query.music == 4 && request.query.music1  >= 15 && request.query.music1  < 70) {
+        response.send(`Nirvana,Queen,Pink Floyd,Metallica Te pueden Gustar! :D`);
 
     
 
-    } else if (request.query.music == "5" && request.query.music1  >= 15 && request.query.music1  < 70) {
-        response.send('Pixies,Artick Monkies,Foals,Interpool,Te pueden Gustar! :D');
+    } else if (request.query.music == 5 && request.query.music1  >= 15 && request.query.music1  < 70) {
+        response.send(`Pixies,Artick Monkies,Foals,Interpool,Te pueden Gustar! :D`);
 
-   } else if (request.query.music=="2" && request.query.music1 >=70){
-    response.send('!Que loco');
+   } else if (request.query.music== 2 && request.query.music1 >=70){
+    response.send(`!Que loco`);
 
-      } else if (request.query.music=="3" && request.query.music1 >=70){
-        response.send('Que loco!');
+      } else if (request.query.music== 3 && request.query.music1 >=70){
+        response.send(`Que loco!`);
 
-      } else if (request.query.music=="4" && request.query.music1 >=70){
-        response.send('!Que loco!');
+      } else if (request.query.music== 4 && request.query.music1 >=70){
+        response.send(`!Que loco!`);
 
-      } else if (request.query.music=="5" && request.query.music1 >=70){
-        response.send('!Que loco');
+      } else if (request.query.music== 5  && request.query.music1 >=70){
+        response.send(`!Que loco`);
 
       } else {
-        response.send('Selecciona  bien el genero');
+        response.send(`Selecciona  bien el genero`);
 
     }
     } catch (e) {
