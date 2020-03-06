@@ -78,7 +78,7 @@
                               <option value="5">Indie</option>
                               
                             </select>
-                            <td>Ingresa tu edad: <input type="number" name="numero" value="15" min="10"
+                            <td>Ingresa tu edad: <input type="number"  value="15" min="10"
                               max="100" 
                               id="music1">                        
                   <td><input type="submit" value="Enviar"></td>
@@ -118,7 +118,7 @@
               // @ts-ignore
               + encodeURIComponent(music.value.trim())
               // @ts-ignore
-              + "&music1=" + encodeURIComponent(music1.value.trim()));
+              + "&numero=" + encodeURIComponent(numero.value.trim()));
           /* La property ok de la respuesta vale true si la conexión terminó
            * con éxito. */
           if (respuestaHttp.ok) {
