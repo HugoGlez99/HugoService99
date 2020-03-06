@@ -2,7 +2,7 @@
 /** Se importa el objeto functions de la librería "firebase-functions". */
 const functions = require('firebase-functions');
 
-/* Se exporta la función sobre https llamada "saludo". */
+/* Se exporta la función sobre https llamada "reco". */
 exports.reco = functions.https.onRequest(
   /** Código para la función saludo.
    * @param {{query:Object}} request solicitud que recibe el servidor.
@@ -11,6 +11,7 @@ exports.reco = functions.https.onRequest(
    * servidor. Corresponde a la librería Express. */
   (request, response) => {
     try {
+        
       // verifica que el parámetro nombre1 recibido del navegador esté correcto.
       if (!request.query.nombre1) {
         // Entra aquí si el nombre1 es null, undefined o ""

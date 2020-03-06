@@ -1,4 +1,4 @@
-
+{
   "hosting": {
     "public": "public",
     "headers": [
@@ -27,8 +27,8 @@
     ],
     "rewrites": [
       {
-        "source": "/reco",
-        "function": "reco"
+        "source": "/saludo",
+        "function": "saludo"
       }
     ]
   },
