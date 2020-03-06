@@ -59,7 +59,7 @@
       
         <section id="articulosprincipales">    
   <div class="">
-      <form action="javascript:;">
+      <form action=="javascript:recomiendaHttp();">
         
         <center>
           <table border="5">
@@ -87,56 +87,60 @@
         </center>
       </form>
   <script>
-    "use strict";
+    //@ts-check
 
-    var resp = document.getElementById("music");
-    var resp1 = document.getElementById("music1");
-
-    document.addEventListener("submit", recomendaciones);
-
-    function recomendaciones() {
-        var cantante = resp.value;
-        var edad = resp1.value;
-
-        if (cantante == "2" && edad >= 15 && edad < 70) {
-            alert("Camila Cabello,Charlie Puth, Billie Elish,Shawn Mendes Te pueden Gustar! :D");
-
-
-        } else if (cantante == "3" && edad >= 15 && edad < 70) {
-            alert("Ozuna,Daddy Yankie,Anuel, Bad Bunny Te pueden gustar! :D");
-
-         
-
-        } else if (cantante == "4" && edad >= 15 && edad < 70) {
-            alert("Nirvana,Queen,Pink Floyd,Metallica Te pueden Gustar! :D");
-
-        
-
-        } else if (cantante == "5" && edad >= 15 && edad < 70) {
-            alert("Pixies,Artick Monkies,Foals,Interpool,Te pueden Gustar! :D");
-
-         
-
-       } else if (cantante=="2" && edad>=70){
-            alert("!Que loco");
-
-          } else if (cantante=="3" && edad>=70){
-            alert("Que loco!");
-
-          } else if (cantante=="4" && edad>=70){
-            alert("!Que loco!");
-
-          } else if (cantante=="5" && edad>=70){
-            alert("!Que loco");
-
+      /** Envía los datos a la función en Internet. El modificador async indica
+       * que la función probablemente no termine en el hilo principal y algunas
+       * de sus instrucciones continuen en otro hilo. En este caso, como la
+       * comunicación con el servidor puede ser tardada se realiza en otro hilo.
+       * Se devuelve un objeto de tipo Promise que sirve para saber cuando la
+       * función termina correctamente o con error en algún momento futuro.
+       * @returns {Promise} para indicar cuando termina correctamente o con
+       *  error. */
+       async function recomiendaHttp() {
+        try {
+          /** La función fetch envía los datos al servidor. El texto que recibe
+           * como parámetro es la url que se invoca. El signo de interrogación
+           * "?" permite pasarle parámetros y encodeURIComponent formatea la
+           * información para que se puede colocar en la URL. El signo "&"
+           * separa los parámetros. En este caso se envían los parámetros
+           * "nombre1" y "nombre2", tomados de la interfaz gráfica.
+           * nombre1.value.trim() toma la captura de id="nombre1" y le quita los
+           *        espacios y saltos de línea al inicio y al final.
+           * fetch lanza la comunicación con el servidor en otro hilo, devuelve
+           * una Promise para saber en que momento termina y trata de seguir a
+           * la siguiente instrucción antes que la comunicación termine.
+           * El operador await fuerza a esperar que la Promise indique el final
+           * de la operación y toma la respuesta devuelta por el servidor.
+           * @type {Response} */
+          const respuestaHttp =
+            await fetch("reco?music="
+              // @ts-ignore
+              + encodeURIComponent(music.value.trim())
+              // @ts-ignore
+              + "&music1=" + encodeURIComponent(music1.value.trim()));
+          /* La property ok de la respuesta vale true si la conexión terminó
+           * con éxito. */
+          if (respuestaHttp.ok) {
+            /* En esta parte del if, la conexión terminó con éxito. Hay que
+             * mostrar el texto del servidor usando la instrucción
+             * respuestaHttp.text(); como este proceso puede ser tardado,
+             * se ejecuta en otro hilo y devuelve una Promise. Con await espera
+             * a que termine este proceso. */
+            const texto = await respuestaHttp.text();
+            alert(texto);
           } else {
-            alert("Selecciona  bien el genero");
-
+            /* En esta parte del if, la conexión termina con errores. Se
+             * lanza una excepción que es atrapada por la función del
+             * catch en la línea 109. La expresión respuestaHttp.statusText
+             * devuelve un texto describiendo el error, que normalmente está
+             * en inglés. */
+            throw new Error(respuestaHttp.statusText)
+          }
+        } catch (e) {
+          alert(e.message)
         }
-
-
-
-    }
+      }
 </script>
           </section>
     
